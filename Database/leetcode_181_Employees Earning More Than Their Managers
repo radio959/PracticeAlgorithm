@@ -1,9 +1,0 @@
-Given the Employee table, write a SQL query that finds out employees who earn more than their managers. 
-For the above table, Joe is the only employee who earns more than his manager.
-
-
-
-select A.name "Employee"
-from Employee A, Employee B
-where A.ManagerId = B.Id
-and A.salary>B.salary;
