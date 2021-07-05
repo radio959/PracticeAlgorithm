@@ -1,27 +1,41 @@
-import java.util.*;
+package Greedy_Algorithm;
 
-public class BOJ_11501_주식 {		
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int testcase = sc.nextInt();
-		long ans[] = new long[testcase];
-		for( int n = 0 ; n < testcase ; n++ ) {
-			int days = sc.nextInt();
-			long stocks[] = new long[days];
-			long max = 0;
-			for( int i = 0 ; i < days ; i++ ) {
-				stocks[i] = sc.nextInt();
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class BOJ_11501_주식 {
+	static int T, N;
+	static long answer;
+	static int[] arr;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		T = Integer.parseInt(br.readLine());
+		int MAX;
+		
+		for(int i=0; i<T; i++) {
+			answer = 0;
+			MAX = 0;
+			N = Integer.parseInt(br.readLine());
+			arr = new int[N];
+			st = new StringTokenizer(br.readLine()," ");
+			
+			for(int j=0; j<N; j++) {
+				arr[j] = Integer.parseInt(st.nextToken());
 			}
-			for( int i = days-1 ; i >= 0 ; i-- ) {
-				if(stocks[i] > max) {
-					max = stocks[i];
-				}else {
-					ans[n] += (max - stocks[i]);
+			
+			for(int j=N-1; j>=0; j--) {
+				if(arr[j]>MAX) {
+					MAX = arr[j];
 				}
-			}		
-		}
-		for( long i : ans) {
-			System.out.println(i);
+				if(arr[j]<MAX) {
+					answer += MAX - arr[j];
+				}
+			}
+
+			System.out.println(answer);
 		}
 	}
-} 
+}
