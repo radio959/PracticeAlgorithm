@@ -32,4 +32,4 @@ public class BOJ_1449_수리공_항승 {
 		System.out.println(cnt);
 	}
 
-}
+} 
