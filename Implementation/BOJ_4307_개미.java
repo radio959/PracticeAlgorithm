@@ -1,24 +1,38 @@
-import java.util.Arrays;
+package Implementation;
+
+import java.io.IOException;
 import java.util.Scanner;
+
 public class BOJ_4307_개미 {
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		int tc = scan.nextInt(), l, n, min, max;
+
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
 		
-		for(int i = 0; i < tc; i++) {
-			l = scan.nextInt(); n = scan.nextInt();
-			int[] points = new int[n];
-			min = 1000000; max = 0;
+		int n, l;
+		
+		for(int tc = 0 ; tc<T; tc++) {
+			int slow = Integer.MIN_VALUE;
+			int fast = Integer.MIN_VALUE;
 			
-			for(int j = 0; j < n; j++) {
-				points[j] = scan.nextInt();
-				if(points[j] >= l/2)
-					min = Math.min(min, points[j]);
-				else
-					max = Math.max(max, points[j]);
+			l = sc.nextInt();
+			n = sc.nextInt();
+			for(int i=0; i<n; i++) {
+				int temp = sc.nextInt();
+				if(temp<l/2) {
+					fast = Math.max(fast, temp);
+					slow = Math.max(slow, l-temp);
+				}else {
+					fast = Math.max(fast, l-temp);
+					slow = Math.max(slow, temp);
+				}
 			}
-			Arrays.sort(points);
-			System.out.println(Math.max(l - min, max) + " " + Math.max(l - points[0], points[n-1]));
+			System.out.println(fast+" "+slow);
+			
 		}
+		
+		
+		
 	}
+
 }
